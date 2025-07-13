@@ -57,7 +57,7 @@ class GridPanel extends JPanel {
         
         //read from pixel array file
         Timer timer;
-        timer = new Timer(1, new ActionListener() {
+        timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadGridFromFile(filename);
@@ -72,8 +72,11 @@ class GridPanel extends JPanel {
             for (int row = 0; row < 16; row++) {
                 String line = br.readLine();
                 for (int col = 0; col < 16; col++) {
+                    if(line == null){line = "0000000000000000";}
                     grid[row][col] = Character.getNumericValue(line.charAt(col));
+                    if(line == null){line = "0000000000000000";}
                 }
+                
             }
         } catch (IOException e) {}
     }
